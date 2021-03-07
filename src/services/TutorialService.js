@@ -1,31 +1,33 @@
-import http from "../http-common";
+import axios from "../axios-common";
 
+// TODO: List all the http methods used in this file. like get, put 
+// Http Methods Used Are: Get, Post, Delete
 const getAll = () => {
-  return http.get("/tutorials");
+  return axios.get("/tutorials");
 };
 
-const get = id => {
-  return http.get(`/tutorials/${id}`);
+const get = (id) => {
+  return axios.get(`/tutorials/${id}`);
 };
 
-const create = data => {
-  return http.post("/tutorials", data);
+const create = (data) => {
+  return axios.post("/tutorials", data);
 };
 
 const update = (id, data) => {
-  return http.put(`/tutorials/${id}`, data);
+  return axios.put(`/tutorials/${id}`, data);
 };
 
-const remove = id => {
-  return http.delete(`/tutorials/${id}`);
+const remove = (id) => {
+  return axios.delete(`/tutorials/${id}`);
 };
 
 const removeAll = () => {
-  return http.delete(`/tutorials`);
+  return axios.delete(`/tutorials`);
 };
 
-const findByTitle = title => {
-  return http.get(`/tutorials?title=${title}`);
+const findByTitle = (title) => {
+  return axios.get(`/tutorials?title=${title}`);
 };
 
 export default {
@@ -35,5 +37,5 @@ export default {
   update,
   remove,
   removeAll,
-  findByTitle
+  findByTitle,
 };

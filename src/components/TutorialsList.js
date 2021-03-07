@@ -18,6 +18,8 @@ const TutorialsList = () => {
   };
 
   const retrieveTutorials = () => {
+    // this will call getAll method defined in Tutorial Service class 
+    // this will in turn call axios.get("/tutorials")
     TutorialDataService.getAll()
       .then(response => {
         setTutorials(response.data);

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import TutorialDataService from "../services/TutorialService";
+import "./style.css"
 
 const Tutorial = props => {
   const initialTutorialState = {

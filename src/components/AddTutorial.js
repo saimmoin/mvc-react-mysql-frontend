@@ -1,39 +1,50 @@
 import React, { useState } from "react";
 import TutorialDataService from "../services/TutorialService";
+import "./style.css"
 
 const AddTutorial = () => {
   const initialTutorialState = {
     id: null,
     title: "",
     description: "",
-    published: false
+    published: false,
   };
+
+//State Objects
+//1. tutorial
+//2. submitted
+
   const [tutorial, setTutorial] = useState(initialTutorialState);
   const [submitted, setSubmitted] = useState(false);
 
-  const handleInputChange = event => {
+//The purpose of handleInputChange is to save the html input in state object.
+  const handleInputChange = (event) => {
     const { name, value } = event.target;
     setTutorial({ ...tutorial, [name]: value });
   };
 
+  //This function is saving a tutorial
   const saveTutorial = () => {
+    //Intializing variable data
     var data = {
+      // title is initialized by state variable tutorial.title
       title: tutorial.title,
-      description: tutorial.description
+      description: tutorial.description,
     };
 
+    // Tutotial Service is used (Service Oriented Architecture)
     TutorialDataService.create(data)
-      .then(response => {
+      .then((response) => {
         setTutorial({
           id: response.data.id,
           title: response.data.title,
           description: response.data.description,
-          published: response.data.published
+          published: response.data.published,
         });
         setSubmitted(true);
         console.log(response.data);
       })
-      .catch(e => {
+      .catch((e) => {
         console.log(e);
       });
   };
@@ -57,6 +68,7 @@ const AddTutorial = () => {
           <div className="form-group">
             <label htmlFor="title">Title</label>
             <input
+              placeholder="Javascript Tricks"
               type="text"
               className="form-control"
               id="title"
@@ -70,6 +82,7 @@ const AddTutorial = () => {
           <div className="form-group">
             <label htmlFor="description">Description</label>
             <input
+              placeholder="By: Saim Saqib"
               type="text"
               className="form-control"
               id="description"
